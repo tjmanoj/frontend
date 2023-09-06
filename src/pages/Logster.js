@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="App" style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
-      <Paper elevation={3} style={{ padding: "5%", paddingBottom: "50px", width:"60vh"}}>
+      <Paper elevation={3} style={{ padding: "5%", paddingBottom: "50px", width:"60vh" , borderRadius:'5%'}}>
         <div align="center">
           {checked ? (
             <Chip

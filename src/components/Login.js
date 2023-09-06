@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import jwtDecode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
+
 // Material UI Imports
 import {
   TextField,
@@ -51,7 +53,20 @@ export default function Login() {
       navigate('/dashboard')
     }
   });
-
+  
+  const FancyButton = styled(Button)({
+    background: 'black',
+    border: 0,
+    borderRadius: 10,
+    boxShadow: '0 3px 5px 2px rgba(0,0,0,0.25)',
+    color: 'white',
+    height: 48,
+    padding: '0 3.5vh',
+    '&:hover': {
+        background: 'white',
+        color: 'black',
+    },
+  });
 
   // Validation for onBlur Email
   const handleEmail = () => {
@@ -190,14 +205,23 @@ export default function Login() {
 
       <Box style={{height: '20px'}} ></Box>
       <div style={{ marginTop: "10px" }}>
-        <Button
+        {/* <Button
           variant="contained"
           fullWidth
           startIcon={<LoginIcon />}
           onClick={handleSubmit}
         >
           LOGIN
-        </Button>
+        </Button> */}
+        <FancyButton
+        variant="contained"
+        fullWidth
+        color="primary"
+        startIcon={<LoginIcon />}
+        onClick={handleSubmit}
+      >
+        Login
+      </FancyButton>
       </div>
 
       {/* Show Form Error if any */}

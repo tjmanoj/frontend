@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./card.css"
-// import { TiChevronLeftOutline, TiChevronRightOutline } from 'react-icons';
+import { TiChevronLeftOutline, TiChevronRightOutline } from 'react-icons/ti';
 
 const MAX_VISIBILITY = 3;
 
@@ -12,7 +12,7 @@ const Carousel = ({ children }) => {
     <div className='carousel'>
       {active > 0 && (
         <button className='nav left' onClick={() => setActive(i => i - 1)}>
-          {/* <TiChevronLeftOutline /> */}
+          <TiChevronLeftOutline />
         </button>
       )}
 
@@ -35,7 +35,7 @@ const Carousel = ({ children }) => {
 
       {active < count - 1 && (
         <button className='nav right' onClick={() => setActive(i => i + 1)}>
-          {/* <TiChevronRightOutline /> */}
+          <TiChevronRightOutline />
         </button>
       )}
     </div>

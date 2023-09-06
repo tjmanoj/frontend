@@ -1,4 +1,4 @@
-FROM node:13.12.0-alpine
+FROM node:14.20.0
 WORKDIR /app
 RUN chmod -R 777 /app/
 ENV PATH /app/node_modules/.bin:$PATH

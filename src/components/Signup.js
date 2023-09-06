@@ -17,6 +17,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import LoginIcon from "@mui/icons-material/Login";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import { styled } from '@mui/material/styles';
 
 const isEmail = (email) =>
   /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
@@ -42,6 +43,21 @@ export default function Signup() {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const FancyButton = styled(Button)({
+    background: 'black',
+    border: 0,
+    borderRadius: 10,
+    boxShadow: '0 3px 5px 2px rgba(0,0,0,0.25)',
+    color: 'white',
+    height: 48,
+    padding: '0 3.5vh',
+    '&:hover': {
+        background: 'white',
+        color: 'black',
+    },
+  });
+
 
   const handleUsername = () => {
     if (!usernameInput) {
@@ -261,26 +277,29 @@ export default function Signup() {
 
       </Box>
       <div style={{ marginTop: "10px" }}>
-        <Button
-          variant="contained"
-          fullWidth
-          startIcon={<LoginIcon />}
-          onClick={registerApi}
-          disabled={!otpValidated} // Disable the button if otpValidated is false
-        >
-          Register
-        </Button>
+        <FancyButton
+        variant="contained"
+        fullWidth
+        color="primary"
+        startIcon={<LoginIcon />}
+        onClick={registerApi}
+        disabled={!otpValidated}
+      >
+        Login
+      </FancyButton>
         <Box style={{height:25}}>
 
         </Box>
-        <Button
-          variant="contained"
-          fullWidth
-          onClick={handleSubmit}
-          disabled={!tpButton} 
-        >
-          Request for OTP
-        </Button>
+        
+        <FancyButton
+        variant="contained"
+        fullWidth
+        color="primary"
+        isabled={!tpButton}
+        onClick={handleSubmit}
+      >
+        Request for OTP
+      </FancyButton>
       </div>
 
       {/* Show Form Error if any */}
