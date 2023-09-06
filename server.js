@@ -61,6 +61,20 @@ io.use((socket, next) => {
 io.on('connection', (socket) => {
   let documentId; // Define documentId variable for this connection
 
+
+  socket.on('don', async (user_mail) => {
+    const trimmedUserMail = user_mail.trim();
+  
+    try {
+      const files = await Document.find({ createdBy: trimmedUserMail });
+      socket.emit('docslist', files);
+    } catch (error) {
+      console.error("Error fetching files:", error);
+    }
+  });
+
+  
+
   socket.on('get-document', async (docId, documentName) => {
     documentId = docId; // Set the documentId for this connection
 
@@ -119,51 +133,26 @@ io.on('connection', (socket) => {
   console.log('connected..');
 });
 
-function createBucket(bucketName) {
-  console.log(`Creating new bucket: ${bucketName}`);
-  return s3
-    .createBucket({
-      Bucket: bucketName,
-      CreateBucketConfiguration: {
-        LocationConstraint: 'us-south',
-      },
-    })
-    .promise()
-    .then(() => {
-      console.log(`Bucket: ${bucketName} created!`);
-    })
-    .catch((e) => {
-      console.error(`ERROR: ${e.code} - ${e.message}\n`);
-    });
-}
 
-async function findOrCreateDocument(id, name) {
-  if (id == null) return;
+async function findOrCreateDocument(id, name, createdBy) {
+  if (id == null) return
 
   const document = await Document.findById(id);
   if (document) return document;
-  return await Document.create({ _id: id, name, data: defaultValue });
+
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const hours = String(currentDate.getHours()).padStart(2, '0');
+  const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+
+  const formattedDate = `${hours}:${minutes} / ${day}-${month}`;
+  const createdAt=formattedDate
+
+  return await Document.create({ _id: id, name, data: defaultValue,createdBy,createdAt });
 }
 
-function createTextFile(filename) {
-  console.log(`Creating new item: `);
-  // var local = "C:/Users/sanja/OneDrive/Documents/dbms notes.pdf";
-  // const fileStream = fs.createReadStream(local);
-  // const fileName = path.basename(local);
-  return s3
-    .putObject({
-      Bucket: "ibm-hc-clone",
-      Key: filename,
-      Body: 'A Sample Document',
-    })
-    .promise()
-    .then(() => {
-      console.log(`Item:created!`);
-    })
-    .catch((e) => {
-      console.error(`ERROR: ${e.code} - ${e.message}\n`);
-    });
-}
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {

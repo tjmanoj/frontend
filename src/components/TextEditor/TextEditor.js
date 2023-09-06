@@ -44,7 +44,7 @@ export default function TextEditor() {
 
     // Initialize the socket using initSocket function
     const initSocketConnection = async () => {
-      const s = await initSocket(); // Use the initSocket function from your socket.js
+      const s = await initSocket(); 
       setSocket(s);
 
       s.on('connected-clients', (clients) => {

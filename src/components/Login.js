@@ -142,6 +142,7 @@ export default function Login() {
           console.log("Name not found in JWT token",decodedToken);
         }
         localStorage.setItem("jwtToken", decodedToken.sub.name);
+        localStorage.setItem("jwtToken1", decodedToken.sub.email);
         console.log("Successfully stored in Local Storage");
       } else {
         throw new Error("JWT token not found in response");

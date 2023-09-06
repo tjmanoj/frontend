@@ -1,21 +1,14 @@
 .card1 {
 	background-color: white;
-    width: 620px;
-	height: 180px;
+    width: 80vh;
+	height: 100%;
 	border-radius: 14px;
 	box-shadow: 0px 10px 30px hsl(189, 4%, 35%, 0.5);
 	position: relative;
 	top: 50px;
-	/* left: 200px; */ 
+	font-family: 'Montserrat', sans-serif; 
 }
-.card1 {
-	display: flex;
-	flex-direction: row;
-  }
-  
-  .left {
-	flex: 30%;
-  }
+
   
   .right {
 	flex: 70%;
@@ -39,19 +32,32 @@ header {
 	margin-top: 38px;
 	margin-right: -100%;
 }
+.buttonss{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 0 1%;
+	margin: 0 5%;
+}
+
+.cardss{
+	display: flex;
+	flex-direction: column;
+	padding: 5%;
+}
+
+.headerss{
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 5% ;
+	padding-left: 10%;
+}
 
 .bold-text {
 	font-weight: bold;
 	font-size: 1.1rem;
-	text-align: center;
-	padding: 10px 20px 0px 20px;
+	margin-bottom: 2%;
 }
-button {
-    border: none;
-    background-color: aquamarine;
-    cursor: pointer;
-    font-size: large;
-    padding: 10px;
-    border-radius: 25px;
-    margin-top: 10px;
-}
+
+
+
