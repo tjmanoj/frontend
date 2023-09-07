@@ -38,39 +38,13 @@ export default function TextEditor() {
   const [token, setToken] = useState('');
   const [connectedClients, setConnectedClients] = useState([]);
 
-  // useEffect(() => {
-  //   const storedToken = localStorage.getItem('jwtToken');
-  //   setToken(storedToken);
-
-  //   // Initialize the socket using initSocket function
-  //   const initSocketConnection = async () => {
-  //     const s = await initSocket(); 
-  //     setSocket(s);
-
-  //     s.on('connected-clients', (clients) => {
-  //       setConnectedClients(clients);
-  //     });
-
-  //     return s;
-  //   };
-
-  //   initSocketConnection();
-
-  //   return () => {
-  //     if (socket) {
-  //       socket.disconnect();
-  //     }
-  //   };
-  // }, []);
-
-
-
   useEffect(() => {
-    const storedToken = localStorage.getItem("jwtToken");
+    const storedToken = localStorage.getItem('jwtToken');
     setToken(storedToken);
 
-    const initSocketConnection = async (storedToken) => {
-      const s = await initSocket(storedToken); 
+    // Initialize the socket using initSocket function
+    const initSocketConnection = async () => {
+      const s = await initSocket(); 
       setSocket(s);
 
       s.on('connected-clients', (clients) => {
@@ -80,20 +54,14 @@ export default function TextEditor() {
       return s;
     };
 
-    initSocketConnection(storedToken);
+    initSocketConnection();
 
-    
     return () => {
       if (socket) {
         socket.disconnect();
       }
     };
-
-
   }, []);
-
-
-
 
   useEffect(() => {
     if (socket == null || quill == null) return;
