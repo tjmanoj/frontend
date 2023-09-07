@@ -122,7 +122,7 @@ export default function Login() {
         "password": password
       })
     }
-    fetch('https://flask-server-tjmanojofficial-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com',opts)
+    fetch('http://127.0.0.1:5000',opts)
     .then(resp=>{
       if(resp.status===200){
         console.log("Login Succesful");

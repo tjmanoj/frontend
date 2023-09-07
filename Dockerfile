@@ -1,4 +1,4 @@
-FROM node:14.20.0
+FROM node:14.15.3
 WORKDIR /app
 RUN chmod -R 777 /app/
 ENV PATH /app/node_modules/.bin:$PATH
