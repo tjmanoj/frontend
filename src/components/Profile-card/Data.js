@@ -1,14 +1,12 @@
 import React from 'react'
-import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import "./data.css"
 
 const Data = ({ files }) => {
-    const navigate=useNavigate();
     const truncateFileName = (name) => {
         if (name.length > 10) {
           return name.slice(0, 20) + '...';
@@ -27,11 +25,6 @@ const Data = ({ files }) => {
         },
       }));
       
-      const fileNavigate=(flid,flname)=>{
-        navigate(`/document/${flid}?name=${encodeURIComponent(flname)}`)
-      }
-
-
     return (
         <>
             <div className='datap'>
@@ -50,19 +43,20 @@ const Data = ({ files }) => {
                                 <td id="d1">
                                     <InsertDriveFileIcon />
                                     <LightTooltip title={file.name} placement="top">
-                                    <Button onClick={() => fileNavigate(file._id, file.name)}>
-                                    {truncateFileName(file.name)}
-                                    </Button>
-                                    {/* <Link
+                                    <Link
                                         to={`/document/${file._id}?name=${encodeURIComponent(file.name)}`}
                                     >
                                         {truncateFileName(file.name)}
-                                    </Link> */}
+                                    </Link>
                                     </LightTooltip>
                                 </td>
                                 <td id="h2">
                                     <LightTooltip title={`${file._id}?name=${encodeURIComponent(file.name)}`} placement="top">
+                                    <Link
+                                        to={`/document/${file._id}?name=${encodeURIComponent(file.name)}`}
+                                    >
                                         {truncateFileName(`${file._id}?name=${encodeURIComponent(file.name)}`)}
+                                    </Link>
                                     </LightTooltip>
                                 </td>
                                 <td id="h3">{file.createdAt}</td>

@@ -116,7 +116,7 @@ export default function Signup() {
     };
 
 
-    fetch("http://127.0.0.1:5000/generate_otp", opts)
+    fetch("https://flask-server-tjmanojofficial-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com/generate_otp", opts)
       .then((resp) => {
         if (resp.status === 200) {
           console.log("OTP sent successfully");
@@ -176,7 +176,7 @@ export default function Signup() {
     };
 
 
-    fetch("http://127.0.0.1:5000/register", opts)
+    fetch("https://flask-server-tjmanojofficial-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com/register", opts)
       .then((resp) => {
         console.log(resp.statusText)
         if (resp.status === 200) {
@@ -295,7 +295,7 @@ export default function Signup() {
         variant="contained"
         fullWidth
         color="primary"
-        isabled={!tpButton}
+        disabled={!tpButton}
         onClick={handleSubmit}
       >
         Request for OTP

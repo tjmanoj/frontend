@@ -29,6 +29,9 @@ body{
     display: flex;
     justify-content: center;
 }
+.neglect{
+  margin: 2%;
+}
 
 .container .ql-toolbar.ql-snow{
     display: flex;
@@ -51,7 +54,11 @@ body{
     body {
       background: none;
     }
-  
+    
+    .neglect{
+      display: none;
+    }
+
     .container .ql-editor {
       width: 6.5in;
       height: 9in;

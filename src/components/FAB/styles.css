@@ -16,6 +16,7 @@
 
 .fab-container li {
   border-radius: 50%;
+  box-shadow: 0 3px 6px lightgrey;
   display: grid;
   place-items: center;
   margin: 8px 0;
@@ -26,11 +27,11 @@
 }
 
 .fab-button {
-  background-color: #ffffff;
+  background-color: #00a8ff;
 }
 
 .fab-button svg {
-  fill: rgb(0, 0, 0);
+  fill: white;
 }
 
 .fab-action {
@@ -47,17 +48,15 @@
 .fab-action.open {
   transform: translateY(0) scale(1);
   opacity: 1;
-  background-color: white;
 }
 
 .fab-action .tooltip {
-  font-weight: 600;
   padding: 4px 6px;
   font-size: 12px;
   position: absolute;
   left: -12px;
   transform: translateX(-75%);
-  background-color: #000000;
+  background-color: #353b48;
   border-radius: 4px;
   color: white;
   opacity: 0;

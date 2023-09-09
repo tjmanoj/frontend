@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import ReactQuill, { Quill } from 'react-quill';
 import 'quill/dist/quill.snow.css';
 import '../TextEditor/style.css';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation,useNavigate } from 'react-router-dom';
 import Fab from '../FAB';
-import { FcAbout, FcBusinessman, FcCamera, FcFullTrash } from 'react-icons/fc';
+import { FcAbout, FcExport, FcCamera, FcFullTrash } from 'react-icons/fc';
 import { initSocket } from '../../socket';
 
 
@@ -37,7 +37,7 @@ export default function TextEditor() {
   const documentName = queryParams.get('name');
   const [token, setToken] = useState('');
   const [connectedClients, setConnectedClients] = useState([]);
-
+  const navigate=useNavigate();
   // useEffect(() => {
   //   const storedToken = localStorage.getItem('jwtToken');
   //   setToken(storedToken);
@@ -173,11 +173,17 @@ export default function TextEditor() {
     socket.emit('bucket-creation', bucketName);
   };
 
+   const logout=()=>{
+    localStorage.removeItem("jwtToken")
+    localStorage.removeItem("jwtToken1")
+    navigate('/')
+   }
+
   const actions = [
-    { label: 'About', icon: <FcAbout />, onClick: Abc },
-    { label: 'Profile', icon: <FcBusinessman />, onClick: def },
-    { label: 'Picture', icon: <FcCamera />, onClick: ghi },
-    { label: 'Trash', icon: <FcFullTrash />, onClick: console.log },
+    { label: 'Save as PDF ', icon: <FcExport />, onClick: Abc },
+    // { label: 'Profile', icon: <FcBusinessman />, onClick: def },
+    // { label: 'Picture', icon: <FcCamera />, onClick: ghi },
+    { label: 'LogOut 🏃‍♀️', icon: <FcFullTrash />, onClick: logout },
   ];
 
   const wrapperRef = useCallback((wrapper) => {
@@ -199,12 +205,14 @@ export default function TextEditor() {
 
   return (
     <>
+      <div className='neglect'>
       <h2>Connected Clients:</h2>
       <ul>
         {connectedClients.map((clientName) => (
           <li key={clientName}>{clientName}</li>
         ))}
       </ul>
+      </div>
       <div className="container" ref={wrapperRef}></div>
       <Fab actions={actions} />
     </>

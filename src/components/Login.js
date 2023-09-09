@@ -122,7 +122,7 @@ export default function Login() {
         "password": password
       })
     }
-    fetch('http://127.0.0.1:5000',opts)
+    fetch('https://flask-server-tjmanojofficial-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com',opts)
     .then(resp=>{
       if(resp.status===200){
         console.log("Login Succesful");
@@ -142,7 +142,6 @@ export default function Login() {
           console.log("Name not found in JWT token",decodedToken);
         }
         localStorage.setItem("jwtToken", decodedToken.sub.name);
-        localStorage.setItem("jwtToken1", decodedToken.sub.email);
         console.log("Successfully stored in Local Storage");
       } else {
         throw new Error("JWT token not found in response");
